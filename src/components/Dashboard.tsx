@@ -9,6 +9,11 @@ import CorrelationHeatmap from "@/components/CorrelationHeatmap";
 import RiskMonitor from "@/components/RiskMonitor";
 import RelativeStrength from "@/components/RelativeStrength";
 import EarningsTracker from "@/components/EarningsTracker";
+import CryptoDashboard from "@/components/CryptoDashboard";
+import ForexMonitor from "@/components/ForexMonitor";
+import NewsFeed from "@/components/NewsFeed";
+import SectorRotation from "@/components/SectorRotation";
+import MarketBreadth from "@/components/MarketBreadth";
 
 interface MarketDataResponse {
   data: Record<string, TickerData>;
@@ -637,10 +642,27 @@ export default function Dashboard() {
           MARKET ANALYTICS
         </h2>
 
+        <MarketBreadth data={data} />
+        <SectorRotation data={data} />
         <RiskMonitor data={data} />
         <RelativeStrength data={data} />
         <CorrelationHeatmap data={data} />
+
+        {/* ADDITIONAL MARKETS */}
+        <h2 className="text-center text-base font-bold tracking-[0.3em] mt-6 mb-3 pb-1" style={{ borderBottom: "2px solid #000" }}>
+          CRYPTO &amp; FOREX
+        </h2>
+
+        <CryptoDashboard />
+        <ForexMonitor />
+
+        {/* NEWS & CALENDAR */}
+        <h2 className="text-center text-base font-bold tracking-[0.3em] mt-6 mb-3 pb-1" style={{ borderBottom: "2px solid #000" }}>
+          NEWS &amp; CALENDAR
+        </h2>
+
         <EarningsTracker data={data} />
+        <NewsFeed />
 
         {/* Footer */}
         <div className="flex justify-between items-center mt-3 pt-2 border-t border-gray-400 text-[10px] text-gray-500">
@@ -659,7 +681,6 @@ export default function Dashboard() {
             >
               {downloading ? "Generating PDF..." : "Download PDF"}
             </button>
-            <span>Powered by Tiingo API</span>
           </div>
         </div>
       </div>
